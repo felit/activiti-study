@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1445879121056" name="" targetNamespace="http://www.activiti.org/test" typeLanguage="http://www.w3.org/2001/XMLSchema">
   <process id="leave" isClosed="false" name="leave">
-    <startEvent id="startEvent1" name="Start"/>
+    <startEvent id="startEvent1" name="Start">
+         <extensionElements>
+             <activiti:formProperty id="startDate" name="请假开始日期" type="date"
+                       datePattern="yyyy-MM-dd" required="true" readable="true" writable="true"/>
+         </extensionElements>
+    </startEvent>
     <endEvent id="endevent1" name="End"/>
     <userTask id="usertask1" name="领导审批">
          <potentialOwner>
