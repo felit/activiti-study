@@ -2,6 +2,7 @@ package com.livedrof.activiti;
 
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
+import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -55,6 +56,9 @@ public class Sayhelloleave2 {
         variables.put("approved", true);
 
         taskService.complete(task.getId(), variables);
+        // TODO 怎样取得变量，流程的变量，流程里面的变量
+        System.out.println("打印变量：");
+        System.out.println( ((ExecutionEntity)processInstance).getVariables());
 
         HistoryService historyService = processEngine.getHistoryService();
         HistoricProcessInstanceQuery historicProcessInstanceQuery = historyService.createHistoricProcessInstanceQuery().finished();
