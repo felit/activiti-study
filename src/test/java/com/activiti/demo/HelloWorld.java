@@ -24,6 +24,5 @@ public class HelloWorld {
         RuntimeService runtimeService = processEngine.getRuntimeService();
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("leave");
         System.out.println("pid=" + processInstance.getId() + ", pdid=" + processInstance.getProcessDefinitionId());
-
     }
 }

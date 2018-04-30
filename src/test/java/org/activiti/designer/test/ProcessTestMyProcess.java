@@ -15,7 +15,7 @@ import org.junit.Test;
 
 public class ProcessTestMyProcess {
 
-	private String filename = "/home/congsl/activiti-workspace/ActivitiInAction/src/main/resources/diagrams/leave.bpmn";
+	private String filename = "diagrams/leave.bpmn";
 
 	@Rule
 	public ActivitiRule activitiRule = new ActivitiRule();
@@ -24,7 +24,8 @@ public class ProcessTestMyProcess {
 	public void startProcess() throws Exception {
 		RepositoryService repositoryService = activitiRule.getRepositoryService();
 		repositoryService.createDeployment().addInputStream("myProcess.bpmn20.xml",
-				new FileInputStream(filename)).deploy();
+				this.getClass().getClassLoader()
+						.getResourceAsStream(filename)).deploy();
 		RuntimeService runtimeService = activitiRule.getRuntimeService();
 		Map<String, Object> variableMap = new HashMap<String, Object>();
 		variableMap.put("name", "Activiti");
