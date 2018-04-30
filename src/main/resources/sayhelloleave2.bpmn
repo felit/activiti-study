@@ -3,15 +3,13 @@
   <process id="leavesayhello" isClosed="false" name="Leave" processType="None">
     <startEvent id="startevent1" name="Start"/>
     <endEvent id="endevent1" name="End"/>
-    <userTask activiti:exclusive="true" id="_2" name="userTask1">
-         <potentialOwner>
-              <resourceAssignmentExpression>
-                   <formalExpression>deptLeader</formalExpression>
-              </resourceAssignmentExpression>
-         </potentialOwner>
-    </userTask>
+    <userTask activiti:candidateGroups="deptLeader" id="_2" name="userTask1"/>
     <sequenceFlow id="_3" sourceRef="startevent1" targetRef="_2"/>
-    <sequenceFlow id="_4" sourceRef="_2" targetRef="endevent1"/>
+    <scriptTask activiti:exclusive="false" id="_5" name="ScriptTask" scriptFormat="groovy">
+      <script><![CDATA[out:println "applyUser:"+applyUser+",days:"+days+",approval:"+approved;]]></script>
+    </scriptTask>
+    <sequenceFlow id="_6" sourceRef="_2" targetRef="_5"/>
+    <sequenceFlow id="_7" sourceRef="_5" targetRef="endevent1"/>
   </process>
   <bpmndi:BPMNDiagram documentation="background=#FFFFFF;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
     <bpmndi:BPMNPlane bpmnElement="leavesayhello">
@@ -28,20 +26,33 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_2" id="Shape-_2">
-        <omgdc:Bounds height="55.0" width="85.0" x="210.0" y="20.0"/>
+        <omgdc:Bounds height="55.0" width="85.0" x="40.0" y="150.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" id="Shape-_5">
+        <omgdc:Bounds height="55.0" width="85.0" x="235.0" y="150.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_3" id="BPMNEdge__3" sourceElement="startevent1" targetElement="_2">
-        <omgdi:waypoint x="62.0" y="52.0"/>
-        <omgdi:waypoint x="210.0" y="47.5"/>
+        <omgdi:waypoint x="51.0" y="67.19868415357067"/>
+        <omgdi:waypoint x="51.0" y="150.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_4" id="BPMNEdge__4" sourceElement="_2" targetElement="endevent1">
-        <omgdi:waypoint x="295.0" y="47.5"/>
+      <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6" sourceElement="_2" targetElement="_5">
+        <omgdi:waypoint x="125.0" y="177.5"/>
+        <omgdi:waypoint x="235.0" y="177.5"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7" id="BPMNEdge__7" sourceElement="_5" targetElement="endevent1">
+        <omgdi:waypoint x="320.0" y="177.5"/>
         <omgdi:waypoint x="435.0" y="51.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
